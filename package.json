@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "build": "node feed2json/feed2json.js && node json2feed/prepareFeed.js && node json2feed/json2feed.js"
+  },
   "dependencies": {
     "jsonfeed-to-rss": "^3.0.5",
     "rss-parser": "^3.12.0"
