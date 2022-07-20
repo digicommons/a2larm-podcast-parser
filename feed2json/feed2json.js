@@ -92,7 +92,15 @@ const fs = require('fs');
   const feedJSON = JSON.stringify(obj, null, 4);
 
   try {
-    fs.writeFileSync('./feed2json/feed2json-output.json', feedJSON);
+    // Check if 'feeds' folder exists
+    const feedsDir = './feeds'
+    if (!fs.existsSync(feedsDir)){
+      fs.mkdirSync(feedsDir, { recursive: true });
+    }
+
+    // Write full-feed.json
+    fs.writeFileSync('./feeds/full-feed.json', feedJSON);
+
     // file written successfully
   } catch (err) {
     console.error(err);

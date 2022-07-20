@@ -8,7 +8,15 @@ for (const file of fileList) {
   const rssFeed = jsonfeedToRSS(episodeJSONFeed);
 
   try {
+    // Check if 'feeds/rss' folder exists
+    const feedsDir = './feeds/rss'
+    if (!fs.existsSync(feedsDir)){
+      fs.mkdirSync(feedsDir, { recursive: true });
+    }
+
+    // Write podcast information to .rss file
     fs.writeFileSync(`./feeds/rss/${file}.rss`, rssFeed);
+
     // file written successfully
   } catch (err) {
     console.error(err);
